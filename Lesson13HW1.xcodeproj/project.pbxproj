@@ -12,6 +12,7 @@
 		D418843E24AC433F00BE7A03 /* Lesson13HW1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D418843C24AC433F00BE7A03 /* Lesson13HW1.xcdatamodeld */; };
 		D418844024AC434000BE7A03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D418843F24AC434000BE7A03 /* Assets.xcassets */; };
 		D418844324AC434000BE7A03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D418844124AC434000BE7A03 /* LaunchScreen.storyboard */; };
+		D418844B24AC4CA800BE7A03 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D418844A24AC4CA800BE7A03 /* StorageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		D418843F24AC434000BE7A03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D418844224AC434000BE7A03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D418844424AC434000BE7A03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D418844A24AC4CA800BE7A03 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +56,63 @@
 		D418843224AC433F00BE7A03 /* Lesson13HW1 */ = {
 			isa = PBXGroup;
 			children = (
-				D418843324AC433F00BE7A03 /* AppDelegate.swift */,
-				D418843724AC433F00BE7A03 /* TaskListViewController.swift */,
-				D418843F24AC434000BE7A03 /* Assets.xcassets */,
-				D418844124AC434000BE7A03 /* LaunchScreen.storyboard */,
-				D418844424AC434000BE7A03 /* Info.plist */,
-				D418843C24AC433F00BE7A03 /* Lesson13HW1.xcdatamodeld */,
+				D418844D24AC762500BE7A03 /* Controllers */,
+				D418844C24AC761900BE7A03 /* Managers */,
+				D418844F24AC764400BE7A03 /* Media */,
+				D418845024AC765700BE7A03 /* Storyboards */,
+				D418845124AC766E00BE7A03 /* SupportingFiles */,
+				D418844E24AC763700BE7A03 /* DataBase */,
 			);
 			path = Lesson13HW1;
+			sourceTree = "<group>";
+		};
+		D418844C24AC761900BE7A03 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				D418844A24AC4CA800BE7A03 /* StorageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		D418844D24AC762500BE7A03 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D418843724AC433F00BE7A03 /* TaskListViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D418844E24AC763700BE7A03 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				D418843C24AC433F00BE7A03 /* Lesson13HW1.xcdatamodeld */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		D418844F24AC764400BE7A03 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				D418843F24AC434000BE7A03 /* Assets.xcassets */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		D418845024AC765700BE7A03 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				D418844124AC434000BE7A03 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		D418845124AC766E00BE7A03 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				D418844424AC434000BE7A03 /* Info.plist */,
+				D418843324AC433F00BE7A03 /* AppDelegate.swift */,
+			);
+			path = SupportingFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +188,7 @@
 				D418843E24AC433F00BE7A03 /* Lesson13HW1.xcdatamodeld in Sources */,
 				D418843824AC433F00BE7A03 /* TaskListViewController.swift in Sources */,
 				D418843424AC433F00BE7A03 /* AppDelegate.swift in Sources */,
+				D418844B24AC4CA800BE7A03 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +326,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 883VHW277J;
-				INFOPLIST_FILE = Lesson13HW1/Info.plist;
+				INFOPLIST_FILE = Lesson13HW1/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -293,7 +345,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 883VHW277J;
-				INFOPLIST_FILE = Lesson13HW1/Info.plist;
+				INFOPLIST_FILE = Lesson13HW1/SupportingFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
