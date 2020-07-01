@@ -74,41 +74,6 @@ class TaskListViewController: UITableViewController {
         present(alert, animated: true)
     }
     
-    private func showAlertUpdateTask(with title: String, and message: String, indexPath: IndexPath) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        
-        let updateAction = UIAlertAction(title: "Rename", style: .default) { _ in
-            guard let taskName = alert.textFields?.first?.text, !taskName.isEmpty else { return }
-            self.update(taskName, indexPath: indexPath)
-        }
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
-        
-        alert.addAction(updateAction)
-        alert.addAction(cancelAction)
-        alert.addTextField { textField in
-            textField.text = self.tasks[indexPath.row].name
-        }
-
-        present(alert, animated: true)
-    }
-    
-    private func showActionSheetForDelete(withTitle title: String, andMessage message: String, indexPath: IndexPath) {
-        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-
-            if StorageManager.shared.removeSelectedTask(self.tasks[indexPath.row].name ?? "") {
-                self.tasks.remove(at: indexPath.row)
-                self.tableView.deleteRows(at: [indexPath], with: .fade)
-            }
-            
-        }
-        let noAction = UIAlertAction(title: "No", style: .cancel)
-        actionSheet.addAction(yesAction)
-        actionSheet.addAction(noAction)
-        present(actionSheet, animated: true)
-    }
-    
     private func save(_ taskName: String) {
         if let task = StorageManager.shared.addNewTask(taskName) {
             tasks.append(task)
@@ -118,7 +83,7 @@ class TaskListViewController: UITableViewController {
     }
 
     private func update(_ taskName: String, indexPath: IndexPath) {
-        if let task = StorageManager.shared.updateSelectedTask(taskName) {
+        if let task = StorageManager.shared.updateSelectedTask(tasks[indexPath.row], taskName) {
             tasks[indexPath.row] = task
             tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -151,12 +116,21 @@ extension TaskListViewController {
         cell.textLabel?.text = task.name
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        showDetailInfoAboutTask(at: indexPath)
+    }
+    
+    private func showDetailInfoAboutTask(at indexPath: IndexPath) {
+        print(tasks[indexPath.row])
+    }
         
     // MARK: - Delete or update on swipe
     override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
                 
         let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (_, _, completionHandler) in
-            self.showActionSheetForDelete(withTitle: self.tasks[indexPath.row].name ?? "", andMessage: "Delete?", indexPath: indexPath)
+            self.showActionSheetForDeleteTask(withTitle: self.tasks[indexPath.row].name ?? "", andMessage: "Delete?", indexPath: indexPath)
             completionHandler(true)
         }
         deleteAction.backgroundColor = .red
@@ -171,6 +145,42 @@ extension TaskListViewController {
         swipeActions.performsFirstActionWithFullSwipe = false
 
         return swipeActions
+    }
+    
+    private func showActionSheetForDeleteTask(withTitle title: String, andMessage message: String, indexPath: IndexPath) {
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+
+            if StorageManager.shared.removeSelectedTask(self.tasks[indexPath.row]) {
+                self.tasks.remove(at: indexPath.row)
+                self.tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel)
+        actionSheet.addAction(yesAction)
+        actionSheet.addAction(noAction)
+        
+        present(actionSheet, animated: true)
+    }
+    
+    private func showAlertUpdateTask(with title: String, and message: String, indexPath: IndexPath) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let updateAction = UIAlertAction(title: "Rename", style: .default) { _ in
+            guard let taskName = alert.textFields?.first?.text, !taskName.isEmpty else { return }
+            self.update(taskName, indexPath: indexPath)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .destructive)
+        
+        alert.addAction(updateAction)
+        alert.addAction(cancelAction)
+        alert.addTextField { textField in
+            textField.text = self.tasks[indexPath.row].name
+        }
+
+        present(alert, animated: true)
     }
     
 }
